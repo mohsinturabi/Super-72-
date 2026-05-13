@@ -791,7 +791,18 @@ document.addEventListener('keydown', e=>{
 });
 
 // Form
-function submitForm(){const i=document.querySelectorAll('.form-box input,.form-box select');if([...i].some(x=>!x.value.trim())){alert('⚠️ Please fill all fields.');return;}alert('✅ Thank you! Our team will contact you soon.\n📞 Call: 9411041231');i.forEach(x=>x.value='');}
+function submitForm(){
+  const fields = document.querySelectorAll('.form-box input,.form-box select');
+  if([...fields].some(x=>!x.value.trim())){alert('⚠️ Please fill all fields.');return;}
+  const name = fields[0].value.trim();
+  const phone = fields[1].value.trim();
+  const city = fields[2].value.trim();
+  const course = fields[3].value.trim();
+  const msg = `🌟 *New Enquiry – Super 72*\n\n👤 *Name:* ${name}\n📞 *Phone:* ${phone}\n🏙️ *City:* ${city}\n📚 *Course:* ${course}\n\n_Sent via super72.in_`;
+  const waURL = `https://wa.me/919411041231?text=${encodeURIComponent(msg)}`;
+  window.open(waURL, '_blank');
+  fields.forEach(x=>x.value='');
+}
 </script>
 </body>
 </html>
